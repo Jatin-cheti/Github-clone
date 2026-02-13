@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/github-profile-ui/browser",
+  "framework": null
+}

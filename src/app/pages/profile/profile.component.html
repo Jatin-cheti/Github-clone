@@ -1,0 +1,321 @@
+<div class="page">
+
+  <!-- LOADING / ERROR -->
+  <div *ngIf="loading" class="loading">Loading GitHub profile...</div>
+  <div *ngIf="error" class="loading">Failed to load profile.</div>
+
+  <ng-container *ngIf="!loading && user">
+
+    <!-- ================= TOP TABS ================= -->
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        <div *ngFor="let tab of tabs" (click)="setTab(tab)" [class.active]="activeTab === tab" class="tab">
+          {{ tab }}
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="layout">
+
+      <!-- ============ LEFT SIDEBAR ============ -->
+      <aside class="sidebar">
+
+        <img class="avatar" [src]="user.avatar_url" />
+
+        <h2 class="name">{{ user.name }}</h2>
+        <p class="username">{{ user.login }}</p>
+
+        <p class="bio">{{ user.bio }}</p>
+
+        <button class="edit-btn">Edit profile</button>
+
+        <div class="stats">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path
+              d="M11 6a2.5 2.5 0 1 0-2.3-3.5A3.5 3.5 0 0 1 11 9c1.7 0 3 1.3 3 3v1h-2v-1c0-1.1-.9-2-2-2h-1.2A3.5 3.5 0 0 1 11 6z" />
+            <path d="M6 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1C3.8 8 2 9.8 2 12v1h8v-1c0-2.2-1.8-4-4-4z" />
+          </svg>
+          <span><strong>{{ user.followers }}</strong> followers .</span>
+          <span><strong>{{ user.following }}</strong> following</span>
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="info">
+
+          <!-- Company -->
+          <div class="info-item" *ngIf="user.company">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path
+                d="M14 15v-11h-3v-3h-9v14h-2v1h7v-3h2v3h7v-1h-2zM6 11h-2v-2h2v2zM6 8h-2v-2h2v2zM6 5h-2v-2h2v2zM9 11h-2v-2h2v2zM9 8h-2v-2h2v2zM9 5h-2v-2h2v2zM13 11h-2v-2h2v2zM13 8h-2v-2h2v2z" />
+            </svg>
+            {{ user.company }}
+          </div>
+
+          <!-- Location -->
+          <div class="info-item" *ngIf="user.location">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path
+                d="M9.3,19.7C8.5,18.9,2,12.2,2,8c0-4.4,3.6-8,8-8s8,3.6,8,8c0,4.2-6.5,10.9-7.3,11.7C10.3,20.1,9.7,20.1,9.3,19.7z M10,2 C6.7,2,4,4.7,4,8c0,2.5,3.8,7.2,6,9.5c2.2-2.3,6-7,6-9.5C16,4.7,13.3,2,10,2z" />
+              <circle cx="10" cy="8" r="2" />
+            </svg>
+            {{ user.location }}
+          </div>
+
+          <!-- Email -->
+          <div class="info-item" *ngIf="user.email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M2 4h20v16H2V4zm10 7L4 6h16l-8 5zm-8 7V8l8 5 8-5v10H4z" />
+            </svg>
+            {{ user.email }}
+          </div>
+
+          <!-- Portfolio -->
+          <div class="info-item" *ngIf="socialLinks.portfolio">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path
+                d="M10,17.55,8.23,19.27a2.47,2.47,0,0,1-3.5-3.5l4.54-4.55a2.46,2.46,0,0,1,3.39-.09l.12.1a1,1,0,0,0,1.4-1.43A2.75,2.75,0,0,0,14,9.59a4.46,4.46,0,0,0-6.09.22L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33L11.37,19A1,1,0,0,0,10,17.55ZM20.69,3.31a4.49,4.49,0,0,0-6.33,0L12.63,5A1,1,0,0,0,14,6.45l1.73-1.72a2.47,2.47,0,0,1,3.5,3.5l-4.54,4.55a2.46,2.46,0,0,1-3.39.09l-.12-.1a1,1,0,0,0-1.4,1.43,2.75,2.75,0,0,0,.23.21,4.47,4.47,0,0,0,6.09-.22l4.55-4.55A4.49,4.49,0,0,0,20.69,3.31Z" />
+            </svg>
+            <a [href]="socialLinks.portfolio" style=" color: currentColor" target="_blank">shreeramk.com</a>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="info-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6S0 4.88 0 3.5 1.12 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.84-2.2 3.8-2.2 4.07 0 4.82 2.68 4.82 6.16V24h-4v-7.7c0-1.84-.03-4.2-2.56-4.2-2.56 0-2.95 2-2.95 4.07V24h-4V8z" />
+            </svg>
+            <a [href]="socialLinks.linkedin" style=" color: currentColor" target="_blank">LinkedIn</a>
+          </div>
+
+          <!-- X -->
+          <div class="info-item">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path
+                d="M18.901 1.153h3.68l-8.04 9.194L24 22.847h-7.406l-5.8-7.584-6.63 7.584H.48l8.59-9.817L0 1.153h7.594l5.24 6.932 6.067-6.932zm-1.3 19.47h2.04L6.486 3.23H4.3l13.3 17.393z" />
+            </svg>
+            <a [href]="socialLinks.twitter" style=" color: currentColor" target="_blank">pom_fret</a>
+          </div>
+
+        </div>
+
+        <!-- ================= ACHIEVEMENTS ================= -->
+        <div class="section">
+          <h3 class="section-title">Achievements</h3>
+          <div class="achievements">
+            <img *ngFor="let badge of achievements" [src]="badge" class="achievement-badge" />
+          </div>
+        </div>
+
+        <!-- ================= ORGANIZATIONS ================= -->
+        <div class="section">
+          <h3 class="section-title">Organizations</h3>
+          <div class="orgs">
+            <img *ngFor="let org of organizations" [src]="org" class="org-logo" />
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ============ RIGHT CONTENT ============ -->
+      <main class="main">
+
+        <div *ngIf="activeTab === 'Overview'">
+
+          <section class="repos">
+            <div class="repos-header">
+              <h3>Popular repositories</h3>
+              <a class="customize">Customize your pins</a>
+            </div>
+
+            <div class="repo-grid">
+              <div class="repo-card" *ngFor="let repo of repositories">
+
+                <div class="repo-title">
+                  <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+                  <span class="badge">Public</span>
+                </div>
+
+                <p class="repo-desc">
+                  {{ repo.description || 'No description available' }}
+                </p>
+
+                <div class="repo-meta">
+                  <span class="language" *ngIf="repo.language">
+                    <span class="dot"></span>
+                    {{ repo.language }}
+                  </span>
+
+                  <span class="stars" *ngIf="repo.stargazers_count > 0">
+                    ⭐ {{ repo.stargazers_count }}
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </section>
+          <!-- ================= CONTRIBUTIONS ================= -->
+          <section class="contribution-section">
+
+            <!-- HEADER -->
+            <div class="contribution-header">
+              <h3 style="font-weight: 400;">
+                {{ totalContributions }} contributions in the last year
+              </h3>
+
+              <div class="settings-wrapper">
+
+                <button class="settings-btn" (click)="toggleContributionSettings()">
+                  Contribution settings ▾
+                </button>
+
+                <div class="settings-menu" *ngIf="showContributionSettings">
+
+                  <div class="settings-item" [class.active]="selectedContributionSetting === 'private'"
+                    (click)="selectContributionSetting('private')">
+                    <div>
+                      <div class="settings-title">Private contributions</div>
+                      <div class="settings-desc">
+                        Turning off private contributions will show only public activity on your profile.
+                      </div>
+                    </div>
+                    <span class="check" *ngIf="selectedContributionSetting === 'private'"></span>
+                  </div>
+
+                  <div class="settings-item" [class.active]="selectedContributionSetting === 'overview'"
+                    (click)="selectContributionSetting('overview')">
+                    <div>
+                      <div class="settings-title">Activity overview</div>
+                      <div class="settings-desc">
+                        Turning on activity overview will show an overview of your activity across organisations and
+                        repositories.
+                      </div>
+                    </div>
+                    <span class="check" *ngIf="selectedContributionSetting === 'overview'"></span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!-- BODY (heatmap + year column side-by-side) -->
+            <div class="contribution-body">
+
+              <!-- HEATMAP LEFT -->
+              <div class="heatmap-wrapper">
+
+                <div class="heatmap">
+
+                  <!-- MONTH LABELS -->
+                  <div class="months">
+                    <span>Nov</span>
+                    <span>Dec</span>
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                    <span>Sep</span>
+                    <span>Oct</span>
+                  </div>
+
+                  <!-- GRID WRAPPER -->
+                  <div class="heatmap-content">
+
+                    <!-- WEEKDAY LABELS -->
+                    <div class="weekday-labels">
+                      <span>Mon</span>
+                      <span></span>
+                      <span>Wed</span>
+                      <span></span>
+                      <span>Fri</span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                    <!-- HEATMAP GRID -->
+                    <div class="heatmap-grid">
+                      <div *ngFor="let day of contributions" class="heatmap-day level-{{ day.level }}"
+                        [title]="day.count + ' contributions'"></div>
+                    </div>
+
+                  </div>
+
+                  <!-- LEGEND -->
+                  <div class="legend">
+                    <span>Less</span>
+                    <div class="legend-box level-0"></div>
+                    <div class="legend-box level-1"></div>
+                    <div class="legend-box level-2"></div>
+                    <div class="legend-box level-3"></div>
+                    <div class="legend-box level-4"></div>
+                    <span>More</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- YEARS RIGHT -->
+              <div class="year-selector">
+                <button *ngFor="let year of years" (click)="onYearSelect(year)" [class.active]="year === selectedYear">
+                  {{ year }}
+                </button>
+              </div>
+
+            </div>
+
+            <div class="activity-section">
+
+              <!-- LEFT -->
+              <div class="activity-left">
+
+                <div class="org-pills">
+                  <span class="pill" *ngFor="let org of activityOrgs">
+                    {{ '@' + org }}
+                  </span>
+                </div>
+
+                <h4>Activity overview</h4>
+
+                <p class="repo-line">
+                  Contributed to
+                  <span *ngFor="let repo of activityRepos">
+                    <a>{{ repo.owner }}/{{ repo.name }}</a>,
+                  </span>
+                </p>
+
+              </div>
+
+              <!-- RIGHT -->
+              <div class="activity-graph">
+                <div id="xyGraph"></div>
+              </div>
+
+            </div>
+
+          </section>
+
+          <section class="heatmap">
+            <h3>Contribution activity</h3>
+            <div class="heatmap-box">
+              Contribution graph will be integrated here
+            </div>
+          </section>
+
+        </div>
+
+        <div *ngIf="activeTab !== 'Overview'" class="empty">
+          {{ activeTab }} content coming soon...
+        </div>
+
+      </main>
+
+    </div>
+  </ng-container>
+
+</div>

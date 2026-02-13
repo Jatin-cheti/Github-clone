@@ -1,0 +1,306 @@
+
+/* ================= REPOSITORIES ================= */
+
+.repos h3 {
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+.repos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.customize {
+  font-size: 13px;
+  color: #0969da;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.repo-card {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.repo-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.repo-title a {
+  font-weight: 600;
+  color: #0969da;
+  text-decoration: none;
+}
+
+.badge {
+  font-size: 12px;
+  border: 1px solid #d0d7de;
+  padding: 2px 6px;
+  border-radius: 12px;
+  color: #57606a;
+}
+
+.repo-desc {
+  margin: 8px 0;
+  font-size: 13px;
+  color: #57606a;
+}
+
+.repo-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #57606a;
+  align-items: center;
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #f1e05a;
+  border-radius: 50%;
+}
+
+/* ================= CONTRIBUTIONS ================= */
+
+.contribution-section {
+  margin-top: 40px;
+}
+
+/* HEADER */
+.contribution-header {
+  display: flex;
+  gap: 300px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.settings-dropdown {
+  border: none;
+  font-size: 13px;
+  color: #57606a;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* BODY (heatmap + years side-by-side) */
+.contribution-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 70px;
+  gap: 20px;
+  align-items: start;
+}
+
+.heatmap-wrapper {
+  width: 100%;
+}
+
+/* YEAR COLUMN */
+.year-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: -40px;
+}
+
+.year-selector button {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+  width: 60px;
+  transition: background 0.15s ease;
+}
+
+.year-selector button:hover {
+  background: #f6f8fa;
+}
+
+.year-selector button.active {
+  background: #0969da;
+  color: white;
+}
+
+/* ================= HEATMAP ================= */
+
+.heatmap {
+  border: 1px solid #d0d7de;
+  padding: 16px;
+  border-radius: 8px;
+  background: white;
+}
+
+.months {
+  display: flex;
+  font-size: 12px;
+  color: #57606a;
+  margin-bottom: 6px;
+  margin-left: 30px;
+  justify-content: space-between;
+}
+
+/* HEATMAP CONTENT WRAPPER */
+.heatmap-content {
+  display: flex;
+  gap: 8px;
+}
+
+/* WEEKDAY LABELS */
+.weekday-labels {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  gap: 12px;
+  font-size: 11px;
+  color: #57606a;
+  align-items: center;
+}
+
+.weekday-labels span {
+  height: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* SETTINGS DROPDOWN */
+
+.settings-wrapper {
+  position: relative;
+}
+
+.settings-btn {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: #57606a;
+  cursor: pointer;
+}
+
+.settings-menu {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  background: white;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  width: 220px;
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  padding: 6px 0;
+  z-index: 10;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.settings-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.settings-desc {
+  font-size: 12px;
+  color: #57606a;
+  max-width: 180px;
+  line-height: 1.4;
+}
+
+.settings-item:hover {
+  background: #f6f8fa;
+}
+
+.settings-item.active {
+  font-weight: 600;
+}
+
+.check {
+  color: #0969da;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(50, 10px);
+  grid-auto-rows: 12px;
+  gap: 4px;
+}
+
+.level-0 {
+  background: #ebedf0;
+}
+
+.level-1 {
+  background: #9be9a8;
+}
+
+.level-2 {
+  background: #40c463;
+}
+
+.level-3 {
+  background: #30a14e;
+}
+
+.level-4 {
+  background: #216e39;
+}
+
+.heatmap-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #57606a;
+  margin-top: 10px;
+}
+
+.legend-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* SECOND HEATMAP BLOCK */
+.heatmap-box {
+  height: 160px;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
