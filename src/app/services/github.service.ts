@@ -47,12 +47,7 @@ getContributionCalendar(username: string, year: number) {
 
   return this.http.post(
     'https://api.github.com/graphql',
-    { query },
-    {
-      headers: {
-        Authorization: 'Bearer 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'
-      }
-    }
+    { query }
   );
 }
 
@@ -60,7 +55,6 @@ getContributionActivity(username: string, year: number) {
   console.log('Fetching contribution activity for', username, 'in year', year);
 
   const headers = {
-    Authorization: `Bearer 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`,
     'Content-Type': 'application/json'
   };
 
